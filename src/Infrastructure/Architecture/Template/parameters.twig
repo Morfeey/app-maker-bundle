@@ -1,0 +1,4 @@
+{% set lenth = parameters.count() %}
+{% for key, parameter in parameters %}
+{% if parameters.isLast(key) %}{% include 'parameter.twig' with {parameter: parameter} %}{% else %}{% include 'parameter.twig' with {parameter: parameter} %}, {% endif %}
+{% endfor %}

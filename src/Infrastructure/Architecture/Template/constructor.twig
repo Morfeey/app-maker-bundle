@@ -1,0 +1,35 @@
+{% if constructor.getDependencies() %}
+    public function __construct
+    (
+{% for key, parameter in constructor.getDependencies() %}
+{% if constructor.getDependencies().count() == 1 %}
+        {% include 'parameter.twig' with {parameter: parameter} %}
+{% elseif constructor.getDependencies().isLast(key) %}
+        {% include 'parameter.twig' with {parameter: parameter} %}
+{% else %}
+        {% include 'parameter.twig' with {parameter: parameter} %},
+{% endif %}
+{% endfor %}
+{% if constructor.getContent() %}
+
+    ) {
+        {{ constructor.getContent() | raw }}
+    }
+
+{% else %}
+
+    ) {
+    }
+
+{% endif %}
+{% else %}
+    public function __construct()
+{% if constructor.getContent() %}
+    {
+        {{ constructor.getContent() | raw }}
+    }
+{% else %}
+    {
+    }
+{% endif %}
+{% endif %}

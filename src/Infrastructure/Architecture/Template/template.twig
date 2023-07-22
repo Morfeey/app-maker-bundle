@@ -1,0 +1,23 @@
+<?php
+declare(strict_types=1);
+
+namespace {{ content.getNamespace() }};
+
+{% for useNamespace in content.getUseNamespaceCollection() %}
+use {{ useNamespace.getNamespaceFull() }}{{ useNamespace.getAlias() ? [' as ', useNamespace.getAlias()]|join() : '' }};
+{% endfor %}
+
+{% if content.getDocCollection().count() > 0 %}{% include 'class_doc.twig' with {docs: content.getDocCollection(), description: content.getDescription()} %}{% endif %}
+
+{{ content.getClassType().getValue() }} {{ content.getClassName() }}{% include 'extends.twig' with {extends: content.getExtendsCollection(), extends_type: 'extends'} %}{% include 'extends.twig' with {extends: content.getImplementsCollection(), extends_type: 'implements'} %}
+{% if not content.getExtendsCollection().count() and not content.getImplementsCollection().count() %}{{ "\n" }}{% endif %}
+{
+{% if content.getFieldCollection().count() %}{% include 'fields.twig' with {fields: content.getFieldCollection()} %}{% endif %}
+{% if content.getConstructor() %}{% include 'constructor.twig' with {constructor: content.getConstructor()} %}{% endif %}
+{% if not content.getMethodCollection().count() and not content.getConstructor() %}
+
+{% endif %}
+{% for key, method in content.getMethodCollection() %}
+    {% include 'method.twig' with { method: method, isLast:content.getMethodCollection().isLast(key) } %}
+{% endfor %}
+}

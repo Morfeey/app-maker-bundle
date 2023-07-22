@@ -1,0 +1,1 @@
+Create default CQRS architecture by doctrine entity namespace `make:default_architecture` (`mda`) -> `App\Entity\EntityName`

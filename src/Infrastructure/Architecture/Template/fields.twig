@@ -1,0 +1,5 @@
+{% set lenth = fields.count() %}
+{% for key, field in fields %}
+    {% include 'field.twig' with {field: field} %};
+
+{% endfor %}

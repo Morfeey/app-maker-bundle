@@ -1,0 +1,9 @@
+/**
+ * {% if description %}{{ description.getDescription() }}{% endif %}
+
+ *
+ {% for key, doc in docs %}
+* @{{ doc.getType().getValue()}} {% include 'class_doc_uses.twig' with {uses: doc.getUseCollection()} %} {% include ['class_doc_', doc.getType().getValue(), '_parameters.twig']|join with {entity:doc.getEntity()} %}
+
+ {% endfor %}
+*/

@@ -1,0 +1,6 @@
+{% if extends.count() > 0 %}
+{% for key, extend in extends %}
+{% if extends.isFirst(key) and not extends.isLast(key) %} {{ extends_type }} {{ extend.getAlias() ?? extend.getClassName() }},{% elseif extends.count() == 1 %} {{ extends_type }} {{ extend.getAlias() ?? extend.getClassName() }}{% elseif extends.isLast(key) %} {{ extend.getAlias() ?? extend.getClassName() }}{% else %} {{ extend.getAlias() ?? extend.getClassName() }},{% endif %}
+{% endfor %}
+
+{% endif %}

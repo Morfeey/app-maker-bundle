@@ -1,0 +1,1 @@
+{{ field.getModificationType() ? [field.getModificationType().getValue(), ' ']|join : '' }}{{ field.isReadonly() ? 'readonly ' :'' }}{{field.getType().getStringType() ? field.getType().getStringType() : '' }} ${{ field.getName() }}{% include 'default_value_parameter.twig' with {value: field.getValue()} %}

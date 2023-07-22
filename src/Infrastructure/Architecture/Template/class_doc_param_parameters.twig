@@ -1,0 +1,1 @@
+{{ entity.isVariadic() ? '...' : '' }}${{ entity.getName() }}{% include 'parameters.twig' with {parameters: entity.getParameters()} %}

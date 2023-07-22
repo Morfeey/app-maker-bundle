@@ -1,0 +1,23 @@
+{% if method.getDocCollection().count() or description %}
+/**
+    {% if description %}*{{ description.getDescription() }}{% endif %}
+    {% for key, doc in method.getDocCollection() %}
+
+    * @{{ doc.getType().getValue()}} {% if doc.getType().getValue() == 'return' %}{% include 'class_doc_return_parameters.twig' with {uses: doc.getUseCollection()} %}{% else %}{% include 'class_doc_uses.twig' with {uses: doc.getUseCollection()} %}{% endif %} {% if doc.getType().getValue() != 'return' %}{% include ['class_doc_', doc.getType().getValue(), '_parameters.twig']|join with {entity:doc.getEntity()} %}{% endif %}
+
+    {% endfor %}
+*/
+    {{ method.getModificationType().getValue() }}{{ method.getType().getValue() }} function {{ method.getName() }}({% include 'parameters.twig' with {parameters: method.getParameters()} %}): {{ method.getTypeHint() }}{{ method.isVirtual() ? ';': '' }}
+{% else %}
+{{ method.getModificationType().getValue() }}{{ method.getType().getValue() }} function {{ method.getName() }}({% include 'parameters.twig' with {parameters: method.getParameters()} %}): {{ method.getTypeHint() }}{{ method.isVirtual() ? ';': '' }}
+{% endif %}
+{% if method.getContent() and not isLast %}
+    {
+        {{ method.getContent() | raw}}
+    }
+
+{% elseif method.getContent() and isLast %}
+    {
+        {{ method.getContent() | raw}}
+    }
+{% endif %}

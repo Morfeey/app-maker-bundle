@@ -1,0 +1,20 @@
+{
+    "name": "morfeey/app-maker-bundle",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\Bundles\\AppMakerBundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "morfeey",
+            "email": "moorfeey@gmail.com"
+        }
+    ],
+    "require": {
+        "morfeey/infrastructure": "^1.0",
+        "twig/twig": "^3.4"
+    }
+}

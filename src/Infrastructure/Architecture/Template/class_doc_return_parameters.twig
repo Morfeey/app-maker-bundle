@@ -1,0 +1,1 @@
+{% if uses.count() %}{% for key, use in uses %}{% if uses.isLast(key) %}{{ [use.getAlias() ? use.getAlias() : use.getClassName(), use.isArray() ? '[]' : '']|join }}{% else %}{{ [use.getAlias() ? use.getAlias() : use.getClassName(), use.isArray() ? '[]' : '']|join }}|{% endif %}{% endfor %}{% endif %}

@@ -1,0 +1,55 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+#    bind:
+#      $emMain: '@em.entity_manager_main'
+
+  App\Bundles\AppMakerBundle\:
+    resource: '../../../../*'
+    exclude:
+      - '../../../../Resources'
+      - '../../../../Infrastructure/Symfony'
+
+  App\Bundles\AppMakerBundle\Infrastructure\Bus\QueryBus:
+    public: true
+
+  App\Bundles\AppMakerBundle\Infrastructure\Bus\CommandBus:
+    public: true
+
+  _instanceof:
+    App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\ArchitectureFileCaseInterface:
+      tags: ['app.maker.infrastructure.architecture.file_case']
+
+    App\Bundles\AppMakerBundle\Infrastructure\Architecture\Attributes\Method\Cases\MethodCaseInterface:
+      tags: ['app.maker.infrastructure.architecture.file.creator.method']
+
+    App\Bundles\AppMakerBundle\Infrastructure\Architecture\Attributes\Constructor\Cases\ConstructorCaseInterface:
+      tags: ['app.maker.infrastructure.architecture.file.creator.constructor']
+
+    App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Domain\Repository\Doc\Cases\DocCaseInterface:
+      tags: ['app.maker.infrastructure.architecture.file.creator.repository_interface.doc']
+
+    App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Contract\Handler\HandlerInterfaceCaseInterface:
+      tags: ['app.maker.infrastructure.architecture.file.creator.handler_interface']
+
+  App\Bundles\AppMakerBundle\Infrastructure\Architecture\Context\ArchitectureFileCaseContext:
+    arguments:
+      - !tagged_iterator app.maker.infrastructure.architecture.file_case
+
+  App\Bundles\AppMakerBundle\Infrastructure\Architecture\Attributes\Method\Context\MethodCreatorContext:
+    arguments:
+      - !tagged_iterator app.maker.infrastructure.architecture.file.creator.method
+
+  App\Bundles\AppMakerBundle\Infrastructure\Architecture\Attributes\Constructor\Context\ConstructorCaseContext:
+    arguments:
+      - !tagged_iterator app.maker.infrastructure.architecture.file.creator.constructor
+
+  App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Domain\Repository\Doc\Context\DocCaseContext:
+    arguments:
+      - !tagged_iterator app.maker.infrastructure.architecture.file.creator.repository_interface.doc
+
+  App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Contract\Handler\Query\NonArchitect\Context\HandlerInterfaceContext:
+    arguments:
+      - !tagged_iterator app.maker.infrastructure.architecture.file.creator.handler_interface

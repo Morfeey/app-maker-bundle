@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "morfeey/infrastructure": "^1.0",
+        "morfeey/infrastructure": "^1.0.1",
         "twig/twig": "^3.4"
     }
 }

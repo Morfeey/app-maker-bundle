@@ -15,7 +15,7 @@ trait NamespaceHelper
         $namespace = rtrim($namespace, '\\');
         $string =
             (new StringValue($namespace))
-                ->replace('App\\Bundles', NamespaceHelper . phpDirectory::getDocumentRoot(true) . DIRECTORY_SEPARATOR . 'bundles')
+                ->replace('App\\Bundles', Directory::getDocumentRoot(true) . DIRECTORY_SEPARATOR . 'bundles')
                 ->replace('\\', DIRECTORY_SEPARATOR)
                 ->getResult();
         $string = rtrim($string, DIRECTORY_SEPARATOR);

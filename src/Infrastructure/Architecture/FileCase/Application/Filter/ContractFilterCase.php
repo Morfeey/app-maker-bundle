@@ -21,17 +21,17 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Service\File\Construc
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Service\File\TypeCreatorService;
 use ReflectionProperty;
 
-readonly class ContractFilterCase implements ArchitectureFileCaseInterface
+class ContractFilterCase implements ArchitectureFileCaseInterface
 {
 
     use CreatorDefaultArchitectureFileDtoHelper, PrototypeHelper;
     public function __construct(
-        private FilterInterfaceCase $filterInterfaceCase,
-        private RepositoryInterfaceCase $repositoryInterfaceCase,
-        private FieldListInterfaceCase $fieldListInterfaceCase,
-        private AttributesCreatorFacade $attributesCreatorFacade,
-        private ConstructorCreatorService $constructorCreatorService,
-        private TypeCreatorService $typeCreatorService
+        private readonly FilterInterfaceCase $filterInterfaceCase,
+        private readonly RepositoryInterfaceCase $repositoryInterfaceCase,
+        private readonly FieldListInterfaceCase $fieldListInterfaceCase,
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly ConstructorCreatorService $constructorCreatorService,
+        private readonly TypeCreatorService $typeCreatorService
     ) {
     }
 

@@ -67,7 +67,7 @@ class FacadeCase extends DefaultFileCase implements ArchitectureFileCaseInterfac
                 MethodTypeEnum::NON_STATIC,
                 ModificationTypeEnum::PUBLIC_,
                 false,
-                "return \$this->{$fieldName->getResult()};",
+                "return clone \$this->{$fieldName->getResult()};",
                 MethodCaseEnum::GETTER,
                 $typeHint
             );

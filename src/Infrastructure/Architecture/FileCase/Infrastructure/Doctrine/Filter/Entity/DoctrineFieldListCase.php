@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Infrastructure\Doctrine\Filter\Entity;
 
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Dto\File\MethodDto;
 use App\Bundles\InfrastructureBundle\Infrastructure\Doctrine\Entity\CustomEntityInterface;
 use App\Bundles\InfrastructureBundle\Infrastructure\Doctrine\Entity\FieldList\DefaultFieldList;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Attributes\Service\AttributesCreatorFacade;
@@ -47,6 +48,16 @@ class DoctrineFieldListCase implements ArchitectureFileCaseInterface
             $constantList[$this->createConstantName($property)] = $property->getName();
         }
 
+        $methods[] = $this->attributesCreatorFacade->createMethod(
+            'getList',
+            'array',
+            $this->createCollection(),
+            MethodTypeEnum::NON_STATIC,
+            ModificationTypeEnum::PUBLIC_,
+            false,
+            $this->createMethodGetListContent(array_map(static fn(MethodDto $methodDto) => $methodDto->getName(), $methods))
+        );
+
         foreach ($constantList as $constKey => $value) {
             print "public const {$constKey} = '{$value}';\n";
         }
@@ -81,6 +92,26 @@ class DoctrineFieldListCase implements ArchitectureFileCaseInterface
         $className = $this->getClassNameByNamespace(get_class($entity));
 
         return "return self::create({$className}::{$this->createConstantName($property)});";
+    }
+
+    /**
+     * @param string[] $methodNames
+     * @return string
+     */
+    private function createMethodGetListContent(array $methodNames): string
+    {
+        $contentLineList = [
+            'return [',
+        ];
+
+        foreach($methodNames as $methodName) {
+            $contentLineList[] = "           self::{$methodName}(),";
+        }
+
+        $contentLineList[] = '       ];';
+
+
+        return implode(PHP_EOL, $contentLineList);
     }
 
     public function createConstantName(ReflectionProperty $property): string

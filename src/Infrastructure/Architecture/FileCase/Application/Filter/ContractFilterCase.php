@@ -134,7 +134,7 @@ class ContractFilterCase implements ArchitectureFileCaseInterface
 
     protected function createFieldListContent(): string
     {
-        return 'return $this->fieldList;';
+        return 'return clone $this->fieldList;';
     }
 
     protected function createConstructorContent(): string

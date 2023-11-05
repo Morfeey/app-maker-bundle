@@ -5,9 +5,9 @@ namespace App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Applic
 
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Contract\Handler\HandlerInterfaceCaseInterface;
 
-class HandlerInterfaceContext
+readonly class HandlerInterfaceContext
 {
-    public function __construct(protected readonly iterable $handlerInterfaceCases)
+    public function __construct(private iterable $handlerInterfaceCases)
     {
     }
 

@@ -19,8 +19,8 @@ class FindByFilterFieldQueryHandlerInterfaceCase extends DefaultHandlerInterface
 {
 
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly FindByFilterFieldQueryCase $findByFilterFieldQueryCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly FindByFilterFieldQueryCase $findByFilterFieldQueryCase
     ) {
     }
 

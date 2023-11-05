@@ -21,7 +21,7 @@ class FindByFilterFieldListQueryCase extends DefaultCqrsRequestCase implements A
         protected AttributesCreatorFacade $attributesCreatorFacade,
         protected FilterInterfaceCase $filterInterfaceCase,
         protected FieldListInterfaceCase $fieldListInterfaceCase,
-        protected readonly ConstructorCreatorService $constructorCreatorService
+        private readonly ConstructorCreatorService $constructorCreatorService
     ) {
         parent::__construct($attributesCreatorFacade, $filterInterfaceCase, $fieldListInterfaceCase);
     }

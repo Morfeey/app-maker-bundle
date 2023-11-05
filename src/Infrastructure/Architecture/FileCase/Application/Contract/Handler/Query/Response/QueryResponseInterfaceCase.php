@@ -13,13 +13,13 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Domain\Entit
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Helper\CreatorDefaultArchitectureFileDtoHelper;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Helper\PrototypeHelper;
 
-class QueryResponseInterfaceCase implements ArchitectureFileCaseInterface
+readonly class QueryResponseInterfaceCase implements ArchitectureFileCaseInterface
 {
 
     use PrototypeHelper, CreatorDefaultArchitectureFileDtoHelper;
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly DomainEntityGettersInterfaceCase $domainEntityGettersInterfaceCase
+        private AttributesCreatorFacade $attributesCreatorFacade,
+        private DomainEntityGettersInterfaceCase $domainEntityGettersInterfaceCase
     ) {
     }
 

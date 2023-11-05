@@ -21,17 +21,17 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Service\File\Construc
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Service\File\TypeCreatorService;
 use ReflectionProperty;
 
-class ContractFilterCase implements ArchitectureFileCaseInterface
+readonly class ContractFilterCase implements ArchitectureFileCaseInterface
 {
 
     use CreatorDefaultArchitectureFileDtoHelper, PrototypeHelper;
     public function __construct(
-        protected readonly FilterInterfaceCase $filterInterfaceCase,
-        protected readonly RepositoryInterfaceCase $repositoryInterfaceCase,
-        protected readonly FieldListInterfaceCase $fieldListInterfaceCase,
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly ConstructorCreatorService $constructorCreatorService,
-        protected readonly TypeCreatorService $typeCreatorService
+        private FilterInterfaceCase $filterInterfaceCase,
+        private RepositoryInterfaceCase $repositoryInterfaceCase,
+        private FieldListInterfaceCase $fieldListInterfaceCase,
+        private AttributesCreatorFacade $attributesCreatorFacade,
+        private ConstructorCreatorService $constructorCreatorService,
+        private TypeCreatorService $typeCreatorService
     ) {
     }
 
@@ -80,7 +80,7 @@ class ContractFilterCase implements ArchitectureFileCaseInterface
                 'repository',
                 $this->typeCreatorService->create(false, true, $repositoryUse->getClassName()),
                 null,
-                ModificationTypeEnum::PROTECTED_,
+                ModificationTypeEnum::PRIVATE_,
                 true,
                 $repositoryUse
             ),
@@ -88,7 +88,7 @@ class ContractFilterCase implements ArchitectureFileCaseInterface
                 'fieldList',
                 $this->typeCreatorService->create(false, true, $fieldListUse->getClassName()),
                 null,
-                ModificationTypeEnum::PROTECTED_,
+                ModificationTypeEnum::PRIVATE_,
                 true,
                 $fieldListUse
             )

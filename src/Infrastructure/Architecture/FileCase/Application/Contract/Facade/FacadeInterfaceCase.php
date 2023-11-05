@@ -23,11 +23,11 @@ class FacadeInterfaceCase extends DefaultFileCase implements ArchitectureFileCas
 {
 
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly FacadeService $facadeService,
-        protected readonly HandlerInterfaceContext $handlerInterfaceContext,
-        protected readonly FilterInterfaceCase $filterInterfaceCase,
-        protected readonly FieldListInterfaceCase $fieldListInterfaceCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly FacadeService $facadeService,
+        private readonly HandlerInterfaceContext $handlerInterfaceContext,
+        private readonly FilterInterfaceCase $filterInterfaceCase,
+        private readonly FieldListInterfaceCase $fieldListInterfaceCase
     ) {
     }
 

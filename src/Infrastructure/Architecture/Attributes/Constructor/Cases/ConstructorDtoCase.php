@@ -19,11 +19,11 @@ class ConstructorDtoCase implements ConstructorCaseInterface
 {
 
     public function __construct(
-        protected readonly ConstructorCreatorService $constructorCreatorService,
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly TypeCreatorService $typeCreatorService,
-        protected readonly UseCreatorService $useCreatorService,
-        protected readonly DefaultValueCreatorService $defaultValueCreatorService
+        private readonly ConstructorCreatorService $constructorCreatorService,
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly TypeCreatorService $typeCreatorService,
+        private readonly UseCreatorService $useCreatorService,
+        private readonly DefaultValueCreatorService $defaultValueCreatorService
     ) {
     }
 

@@ -16,9 +16,9 @@ class FindByFilterSingleFieldQueryHandlerCase extends DefaultHandler implements 
 {
 
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly FindByFilterSingleFieldQueryHandlerInterfaceCase $handlerInterfaceCase,
-        protected readonly RepositoryInterfaceCase $repositoryInterfaceCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly FindByFilterSingleFieldQueryHandlerInterfaceCase $handlerInterfaceCase,
+        private readonly RepositoryInterfaceCase $repositoryInterfaceCase
     ) {
     }
 

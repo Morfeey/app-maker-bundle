@@ -12,13 +12,13 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Domain\Entit
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Helper\PrototypeHelper;
 use ReflectionMethod;
 
-class DocMethodCreateCase implements DocCaseInterface
+readonly class DocMethodCreateCase implements DocCaseInterface
 {
 
     use PrototypeHelper;
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly DomainEntityInterfaceCase $domainEntityInterfaceCase
+        private AttributesCreatorFacade $attributesCreatorFacade,
+        private DomainEntityInterfaceCase $domainEntityInterfaceCase
     ) {
     }
 

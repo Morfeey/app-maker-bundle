@@ -19,8 +19,8 @@ class FindIdListByFilterQueryHandlerInterfaceCase extends DefaultHandlerInterfac
 {
 
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly FindIdListByFilterQueryCase $findIdListByFilterQueryCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly FindIdListByFilterQueryCase $findIdListByFilterQueryCase
     ) {
     }
 

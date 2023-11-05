@@ -16,10 +16,10 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Domain\Repos
 class FindByFilterQueryHandlerCase extends DefaultHandler implements ArchitectureFileCaseInterface
 {
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly FindByFilterQueryHandlerInterfaceCase $handlerInterfaceCase,
-        protected readonly RepositoryInterfaceCase $repositoryInterfaceCase,
-        protected readonly DomainToQueryResponseFactoryInterfaceCase $factoryCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly FindByFilterQueryHandlerInterfaceCase $handlerInterfaceCase,
+        private readonly RepositoryInterfaceCase $repositoryInterfaceCase,
+        private readonly DomainToQueryResponseFactoryInterfaceCase $factoryCase
     ) {
     }
 

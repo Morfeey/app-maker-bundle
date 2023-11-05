@@ -17,8 +17,8 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Architecture
 class FindByFilterFieldListQueryHandlerInterfaceCase extends DefaultHandlerInterfaceCase implements ArchitectureFileCaseInterface, HandlerInterfaceCaseInterface
 {
     public function __construct(
-        protected AttributesCreatorFacade $attributesCreatorFacade,
-        protected FindByFilterFieldListQueryCase $findByFilterFieldListQueryCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly FindByFilterFieldListQueryCase $findByFilterFieldListQueryCase
     ) {
     }
 

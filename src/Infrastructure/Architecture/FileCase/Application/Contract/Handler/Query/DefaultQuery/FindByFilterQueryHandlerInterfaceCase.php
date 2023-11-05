@@ -20,9 +20,9 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Architecture
 class FindByFilterQueryHandlerInterfaceCase extends DefaultHandlerInterfaceCase implements ArchitectureFileCaseInterface, HandlerInterfaceCaseInterface
 {
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly FindByFilterQueryCase $findByFilterQueryCase,
-        protected QueryResponseInterfaceCase $queryResponseInterfaceCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly FindByFilterQueryCase $findByFilterQueryCase,
+        private readonly QueryResponseInterfaceCase $queryResponseInterfaceCase
     ) {
     }
 

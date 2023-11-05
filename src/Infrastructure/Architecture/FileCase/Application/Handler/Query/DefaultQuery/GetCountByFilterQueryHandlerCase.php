@@ -16,9 +16,9 @@ class GetCountByFilterQueryHandlerCase extends DefaultHandler implements Archite
 {
 
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly GetCountByFilterQueryHandlerInterfaceCase $handlerInterfaceCase,
-        protected readonly RepositoryInterfaceCase $repositoryInterfaceCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly GetCountByFilterQueryHandlerInterfaceCase $handlerInterfaceCase,
+        private readonly RepositoryInterfaceCase $repositoryInterfaceCase
     ) {
     }
 

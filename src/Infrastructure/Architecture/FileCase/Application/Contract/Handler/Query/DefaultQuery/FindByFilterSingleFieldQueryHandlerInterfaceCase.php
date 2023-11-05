@@ -18,8 +18,8 @@ class FindByFilterSingleFieldQueryHandlerInterfaceCase extends DefaultHandlerInt
 {
 
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly FindByFilterSingleFieldQueryCase $query
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly FindByFilterSingleFieldQueryCase $query
     ) {
     }
 

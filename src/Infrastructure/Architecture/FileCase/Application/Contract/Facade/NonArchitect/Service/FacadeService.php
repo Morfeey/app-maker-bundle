@@ -21,12 +21,12 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Contract\NonArchitect\Enum\RequestCqrsType;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Domain\Entity\DomainEntityInterfaceCase;
 
-class FacadeService
+readonly class FacadeService
 {
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributes,
-        protected readonly QueryResponseInterfaceCase $queryResponseInterfaceCase,
-        protected readonly DomainEntityInterfaceCase $domainEntityInterfaceCase
+        private AttributesCreatorFacade $attributes,
+        private QueryResponseInterfaceCase $queryResponseInterfaceCase,
+        private DomainEntityInterfaceCase $domainEntityInterfaceCase
     ) {
     }
 

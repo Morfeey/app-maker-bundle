@@ -20,9 +20,9 @@ class FindByIdentifierQueryHandlerInterfaceCase extends DefaultHandlerInterfaceC
 {
 
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly FindByIdentifierQueryCase $queryCase,
-        protected readonly QueryResponseInterfaceCase $queryResponseInterfaceCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly FindByIdentifierQueryCase $queryCase,
+        private readonly QueryResponseInterfaceCase $queryResponseInterfaceCase
     ) {
     }
 

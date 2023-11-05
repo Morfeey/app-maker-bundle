@@ -17,10 +17,9 @@ class FindByFilterFieldListQueryHandlerCase extends DefaultHandler implements Ar
 {
 
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly ConstructorCreatorService $constructorCreatorService,
-        protected readonly FindByFilterFieldListQueryHandlerInterfaceCase $handlerInterfaceCase,
-        protected readonly RepositoryInterfaceCase $repositoryInterfaceCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly FindByFilterFieldListQueryHandlerInterfaceCase $handlerInterfaceCase,
+        private readonly RepositoryInterfaceCase $repositoryInterfaceCase
     ) {
     }
 

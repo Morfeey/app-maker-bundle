@@ -18,10 +18,10 @@ class FindByIdentifierQueryHandlerCase extends DefaultHandler implements Archite
 
     public const FACTORY_METHOD_NAME = 'mapping';
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly FindByIdentifierQueryHandlerInterfaceCase $handlerInterfaceCase,
-        protected readonly RepositoryInterfaceCase $repositoryInterfaceCase,
-        protected readonly DomainToQueryResponseFactoryInterfaceCase $factoryCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly FindByIdentifierQueryHandlerInterfaceCase $handlerInterfaceCase,
+        private readonly RepositoryInterfaceCase $repositoryInterfaceCase,
+        private readonly DomainToQueryResponseFactoryInterfaceCase $factoryCase
     ) {
     }
 

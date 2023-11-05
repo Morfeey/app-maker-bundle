@@ -19,8 +19,8 @@ class GetCountByFilterQueryHandlerInterfaceCase extends DefaultHandlerInterfaceC
 {
 
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly GetCountByFilterQueryCase $getCountByFilterQueryCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly GetCountByFilterQueryCase $getCountByFilterQueryCase
     ) {
     }
 

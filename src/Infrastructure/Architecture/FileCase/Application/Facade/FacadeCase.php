@@ -33,8 +33,7 @@ class FacadeCase extends DefaultFileCase implements ArchitectureFileCaseInterfac
         private readonly FacadeInterfaceCase $facadeInterfaceCase,
         private readonly FieldListInterfaceCase $fieldListInterfaceCase,
         private readonly FilterInterfaceCase $filterInterfaceCase,
-        private readonly FacadeService $facadeService,
-        private readonly ConstructorCreatorService $constructorCreatorService
+        private readonly FacadeService $facadeService
     ) {
     }
 

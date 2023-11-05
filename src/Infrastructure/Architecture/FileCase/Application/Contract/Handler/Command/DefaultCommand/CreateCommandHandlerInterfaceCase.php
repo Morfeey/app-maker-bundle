@@ -17,8 +17,8 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Architecture
 class CreateCommandHandlerInterfaceCase extends DefaultHandlerInterfaceCase implements ArchitectureFileCaseInterface, HandlerInterfaceCaseInterface
 {
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly CreateCommandCase $queryCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly CreateCommandCase $queryCase
     ) {
     }
 

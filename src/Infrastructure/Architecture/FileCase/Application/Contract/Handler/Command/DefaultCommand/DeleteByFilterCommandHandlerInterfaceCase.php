@@ -18,8 +18,8 @@ class DeleteByFilterCommandHandlerInterfaceCase extends DefaultHandlerInterfaceC
 {
 
     public function __construct(
-        protected readonly AttributesCreatorFacade $attributesCreatorFacade,
-        protected readonly DeleteByFilterCommandCase $queryCase
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly DeleteByFilterCommandCase $queryCase
     ) {
     }
 

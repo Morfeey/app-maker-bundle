@@ -14,10 +14,10 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\DefaultFileC
 abstract class DefaultHandlerInterfaceCase extends DefaultFileCase
 {
     public function createInvokeMethod(
-        AttributesCreatorFacade          $attributesCreatorFacade,
-        ArchitectureFileCaseDto          $caseParameters,
+        AttributesCreatorFacade $attributesCreatorFacade,
+        ArchitectureFileCaseDto $caseParameters,
         ArchitectureCqrsRequestInterface $query,
-        string                           $typeHint
+        string $typeHint
     ): MethodDto {
         return $attributesCreatorFacade->createMethod(
             '__invoke',

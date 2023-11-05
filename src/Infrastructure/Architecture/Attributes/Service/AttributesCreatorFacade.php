@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Bundles\AppMakerBundle\Infrastructure\Architecture\Attributes\Service;
 
-use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Attributes\Service\FileUseCollectorService;
 use App\Bundles\InfrastructureBundle\Infrastructure\Helper\ArrayCollection\Collection;
 use App\Bundles\InfrastructureBundle\Infrastructure\Helper\ArrayCollection\CollectionInterface;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Attributes\Method\Context\MethodCreatorContext;
@@ -41,23 +40,23 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Service\File\Paramete
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Service\File\TypeCreatorService;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Service\File\UseCreatorService;
 
-class AttributesCreatorFacade
+readonly class AttributesCreatorFacade
 {
     use NamespaceHelper, PrototypeHelper, MultiTypeHelper;
     public function __construct(
-        protected readonly MethodCreatorContext $methodCreatorContext,
-        protected readonly FileUseCollectorService $useCollectorService,
-        protected readonly UseCreatorService $useCreatorService,
-        protected readonly DocCreatorService $docCreatorService,
-        protected readonly ArchitectureCreator $architectureCreator,
-        protected readonly MethodCreatorService $methodCreatorService,
-        protected readonly ParameterCreatorService $parameterCreatorService,
-        protected readonly ConstructorCreatorService $constructorCreatorService,
-        protected readonly TypeCreatorService $typeCreatorService,
-        protected readonly DefaultValueCreatorService $defaultValueCreatorService,
-        protected readonly FieldCreatorService $fieldCreatorService,
-        protected readonly GetterService $getterService,
-        protected readonly SetterService $setterService
+        private MethodCreatorContext $methodCreatorContext,
+        private FileUseCollectorService $useCollectorService,
+        private UseCreatorService $useCreatorService,
+        private DocCreatorService $docCreatorService,
+        private ArchitectureCreator $architectureCreator,
+        private MethodCreatorService $methodCreatorService,
+        private ParameterCreatorService $parameterCreatorService,
+        private ConstructorCreatorService $constructorCreatorService,
+        private TypeCreatorService $typeCreatorService,
+        private DefaultValueCreatorService $defaultValueCreatorService,
+        private FieldCreatorService $fieldCreatorService,
+        private GetterService $getterService,
+        private SetterService $setterService
     ) {
     }
 

@@ -15,12 +15,12 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Architecture
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Helper\CreatorDefaultArchitectureFileDtoHelper;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Helper\PrototypeHelper;
 
-readonly class FieldListInterfaceCase implements ArchitectureFileCaseInterface
+class FieldListInterfaceCase implements ArchitectureFileCaseInterface
 {
 
     use CreatorDefaultArchitectureFileDtoHelper, PrototypeHelper;
     public function __construct(
-        private AttributesCreatorFacade $attributesCreatorFacade
+        private readonly AttributesCreatorFacade $attributesCreatorFacade
     ) {
     }
 

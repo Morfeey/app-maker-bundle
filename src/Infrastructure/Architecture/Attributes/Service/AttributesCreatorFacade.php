@@ -40,23 +40,23 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Service\File\Paramete
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Service\File\TypeCreatorService;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Service\File\UseCreatorService;
 
-readonly class AttributesCreatorFacade
+class AttributesCreatorFacade
 {
     use NamespaceHelper, PrototypeHelper, MultiTypeHelper;
     public function __construct(
-        private MethodCreatorContext $methodCreatorContext,
-        private FileUseCollectorService $useCollectorService,
-        private UseCreatorService $useCreatorService,
-        private DocCreatorService $docCreatorService,
-        private ArchitectureCreator $architectureCreator,
-        private MethodCreatorService $methodCreatorService,
-        private ParameterCreatorService $parameterCreatorService,
-        private ConstructorCreatorService $constructorCreatorService,
-        private TypeCreatorService $typeCreatorService,
-        private DefaultValueCreatorService $defaultValueCreatorService,
-        private FieldCreatorService $fieldCreatorService,
-        private GetterService $getterService,
-        private SetterService $setterService
+        private readonly MethodCreatorContext $methodCreatorContext,
+        private readonly FileUseCollectorService $useCollectorService,
+        private readonly UseCreatorService $useCreatorService,
+        private readonly DocCreatorService $docCreatorService,
+        private readonly ArchitectureCreator $architectureCreator,
+        private readonly MethodCreatorService $methodCreatorService,
+        private readonly ParameterCreatorService $parameterCreatorService,
+        private readonly ConstructorCreatorService $constructorCreatorService,
+        private readonly TypeCreatorService $typeCreatorService,
+        private readonly DefaultValueCreatorService $defaultValueCreatorService,
+        private readonly FieldCreatorService $fieldCreatorService,
+        private readonly GetterService $getterService,
+        private readonly SetterService $setterService
     ) {
     }
 

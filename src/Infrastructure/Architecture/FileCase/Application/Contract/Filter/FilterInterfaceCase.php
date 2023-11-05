@@ -23,14 +23,14 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Service\File\DefaultV
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Service\File\TypeCreatorService;
 use ReflectionProperty;
 
-readonly class FilterInterfaceCase implements ArchitectureFileCaseInterface
+class FilterInterfaceCase implements ArchitectureFileCaseInterface
 {
 
     use NamespaceHelper, CreatorDefaultArchitectureFileDtoHelper, PrototypeHelper;
     public function __construct(
-        private AttributesCreatorFacade $attributesCreatorFacade,
-        private TypeCreatorService $typeCreatorService,
-        private DefaultValueCreatorService $defaultValueCreatorService
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly TypeCreatorService $typeCreatorService,
+        private readonly DefaultValueCreatorService $defaultValueCreatorService
     ) {
     }
 

@@ -7,16 +7,21 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Service\TemplateRende
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Dto\ArchitectureFileCaseDto;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Dto\ArchitectureFileDto;
 
-class FileCreatorService
+readonly class FileCreatorService
 {
     public function __construct(
-        protected readonly TemplateRenderService $templateRenderService
+        private TemplateRenderService $templateRenderService
     ) {
     }
 
-    public function create(ArchitectureFileDto $architectureFileDto, ArchitectureFileCaseDto $architectureFileCaseDto): static
+    public function create(ArchitectureFileDto $architectureFileDto, ArchitectureFileCaseDto $architectureFileCaseDto, bool $isDisableOverride): static
     {
         $fileName = $architectureFileCaseDto->getCaseDto()->getFileName();
+        if (file_exists($fileName) && !$isDisableOverride && !$architectureFileDto->isOverrideExistFile()) {
+            return $this;
+        }
+
+
         return
             $this
                 ->touch($fileName)

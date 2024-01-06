@@ -28,6 +28,7 @@ class QueryResponseCase extends DefaultFileCase implements ArchitectureFileCaseI
     {
         return
             $this->createDefault($caseParameters)
+                ->setIsOverrideExistFile(false)
                 ->setConstructor($this->constructorCaseContext->create(ConstructorType::DTO, $caseParameters))
                 ->setMethodCollection(
                     $this->attributesCreatorFacade->createMethods(

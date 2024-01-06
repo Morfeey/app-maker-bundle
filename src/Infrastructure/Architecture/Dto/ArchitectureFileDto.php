@@ -14,20 +14,21 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Enum\ClassTypeEnum;
 
 class ArchitectureFileDto
 {
-    protected string $namespace;
-    protected string $className;
-    protected ClassTypeEnum $classType;
-    protected CollectionInterface $useNamespaceCollection;
-    protected CollectionInterface $classCommentCollection;
-    protected CollectionInterface $implementsCollection;
-    protected CollectionInterface $extendsCollection;
-    protected CollectionInterface $useTraitCollection;
-    protected CollectionInterface $constantCollection;
-    protected CollectionInterface $fieldCollection;
-    protected CollectionInterface $methodCollection;
-    protected CollectionInterface $docCollection;
-    protected ?DocDescriptionDto $description;
-    protected ?ConstructorDto $constructor;
+    private string $namespace;
+    private string $className;
+    private ClassTypeEnum $classType;
+    private CollectionInterface $useNamespaceCollection;
+    private CollectionInterface $classCommentCollection;
+    private CollectionInterface $implementsCollection;
+    private CollectionInterface $extendsCollection;
+    private CollectionInterface $useTraitCollection;
+    private CollectionInterface $constantCollection;
+    private CollectionInterface $fieldCollection;
+    private CollectionInterface $methodCollection;
+    private CollectionInterface $docCollection;
+    private ?DocDescriptionDto $description;
+    private ?ConstructorDto $constructor;
+    private bool $isOverrideExistFile;
 
     public function __construct()
     {
@@ -46,6 +47,7 @@ class ArchitectureFileDto
         $this->namespace = '';
         $this->className = '';
         $this->classType = ClassTypeEnum::CLASS_;
+        $this->isOverrideExistFile = true;
     }
 
     public function getNamespace(): string
@@ -208,6 +210,18 @@ class ArchitectureFileDto
     public function setConstructor(?ConstructorDto $constructor): static
     {
         $this->constructor = $constructor;
+        return $this;
+    }
+
+    public function isOverrideExistFile(): bool
+    {
+        return $this->isOverrideExistFile;
+    }
+
+    public function setIsOverrideExistFile(bool $isOverrideExistFile): static
+    {
+        $this->isOverrideExistFile = $isOverrideExistFile;
+
         return $this;
     }
 }

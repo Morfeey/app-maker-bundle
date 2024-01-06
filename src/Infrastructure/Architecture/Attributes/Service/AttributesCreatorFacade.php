@@ -139,12 +139,12 @@ class AttributesCreatorFacade
     }
 
     public function createParameterByUse(
-        string                $name,
-        UseNamespaceDto       $useNamespaceDto,
-        bool                  $isVariadic = false,
+        string $name,
+        UseNamespaceDto $useNamespaceDto,
+        bool $isVariadic = false,
         ?ModificationTypeEnum $modificationType = ModificationTypeEnum::PRIVATE_,
-        ?string               $defaultValue = null,
-        bool                  $isReadOnly = true
+        ?string $defaultValue = null,
+        bool $isReadOnly = true
     ): ParameterDto {
         return $this->createParameter(
             $name,

@@ -1,0 +1,61 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Contract\Handler\Query\DefaultQuery;
+
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Attributes\Service\AttributesCreatorFacade;
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Dto\ArchitectureFileCaseDto as FileCase;
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Dto\ArchitectureFileDto as ArchitectureFile;
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Dto\File\UseNamespaceDto;
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Enum\ClassTypeEnum;
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Contract\ArchitectureCqrsRequestInterface;
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Contract\Handler\DefaultHandlerInterfaceCase;
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Contract\Handler\HandlerInterfaceCaseInterface;
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Contract\Handler\Query\Response\QueryResponseInterfaceCase;
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Contract\NonArchitect\Enum\RequestCqrsType;
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Contract\Query\DefaultQuery\FindByFilterIterableQueryCase;
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\ArchitectureFileCaseInterface;
+
+class FindByFilterIterableQueryHandlerInterfaceCase extends DefaultHandlerInterfaceCase implements ArchitectureFileCaseInterface, HandlerInterfaceCaseInterface
+{
+    public function __construct(
+        private readonly AttributesCreatorFacade $attributesCreatorFacade,
+        private readonly FindByFilterIterableQueryCase $findByFilterQueryCase,
+        private readonly QueryResponseInterfaceCase $queryResponseInterfaceCase
+    ) {
+    }
+    public function create(FileCase $caseParameters): ArchitectureFile
+    {
+        $queryResponseUse = $this->queryResponseInterfaceCase->createUse($caseParameters);
+        $method = $this->createInvokeMethod(
+            $this->attributesCreatorFacade,
+            $caseParameters,
+            $this->findByFilterQueryCase,
+            'iterable'
+        );
+
+        return
+            $this->createDefault($caseParameters)
+                ->setClassType(ClassTypeEnum::INTERFACE_)
+                ->setMethodCollection($this->createCollection()->add($method))
+                ->setUseNamespaceCollection(
+                    $this->createCollection()
+                        ->add($queryResponseUse)
+                );
+    }
+
+    public function createUse(FileCase $fileCase, bool $isArray = false): UseNamespaceDto
+    {
+        return $this->createDefaultUse($this->attributesCreatorFacade, $fileCase, $isArray);
+    }
+
+    public function getRequest(): ArchitectureCqrsRequestInterface
+    {
+        return $this->findByFilterQueryCase;
+    }
+
+    protected function getType(): RequestCqrsType
+    {
+        return RequestCqrsType::QUERY;
+    }
+}

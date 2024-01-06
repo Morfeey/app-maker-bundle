@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Factory;
 
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Dto\File\TypeDto;
 use App\Bundles\InfrastructureBundle\Infrastructure\Helper\ArrayCollection\CollectionInterface;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Attributes\Service\AttributesCreatorFacade;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Dto\ArchitectureFileCaseDto as FileCase;
@@ -66,6 +67,20 @@ class DomainToQueryResponseFactoryInterfaceCase extends DefaultFileCase implemen
             true
         );
 
+        $mappingIterableMethod = $this->attributesCreatorFacade->createMethod(
+            'mappingIterable',
+            'iterable',
+            $this->createCollection()->add(
+                $this->attributesCreatorFacade->createParameter(
+                    'domainEntityIterable',
+                    new TypeDto(false, false, 'iterable', null),
+                )
+            ),
+            MethodTypeEnum::NON_STATIC,
+            ModificationTypeEnum::PUBLIC_,
+            true
+        );
+
         return
             $this->createDefault($caseParameters)
                 ->setClassType(ClassTypeEnum::INTERFACE_)
@@ -73,6 +88,7 @@ class DomainToQueryResponseFactoryInterfaceCase extends DefaultFileCase implemen
                     $this->createCollection()
                         ->add($mappingMethod)
                         ->add($mappingCollectionMethod)
+                        ->add($mappingIterableMethod)
                 )->setUseNamespaceCollection(
                     $this->createCollection()
                         ->add($queryResponseInterfaceUse)

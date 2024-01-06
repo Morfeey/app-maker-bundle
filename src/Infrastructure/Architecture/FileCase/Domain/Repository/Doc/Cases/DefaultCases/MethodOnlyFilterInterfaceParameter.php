@@ -33,18 +33,20 @@ abstract class MethodOnlyFilterInterfaceParameter implements DocCaseInterface
     protected function createFilterParameter(ReflectionMethod $method, FileCaseDto $case): ?ParameterDto
     {
         foreach ($method->getParameters() as $parameter) {
-            if ($parameter->getName() === 'filter') {
-                $filterUse = $this->filterInterfaceCase->createUse($case);
-                return $this->docMethodParameterInterfaceCreatorService->create(
-                    $parameter,
-                    $this->typeCreatorService->create(
-                        false,
-                        true,
-                        $filterUse->getClassName(),
-                        $filterUse
-                    )
-                );
+            if ($parameter->getName() !== 'filter') {
+                continue;
             }
+
+            $filterUse = $this->filterInterfaceCase->createUse($case);
+            return $this->docMethodParameterInterfaceCreatorService->create(
+                $parameter,
+                $this->typeCreatorService->create(
+                    false,
+                    true,
+                    $filterUse->getClassName(),
+                    $filterUse
+                )
+            );
         }
 
         return null;

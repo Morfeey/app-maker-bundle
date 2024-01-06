@@ -5,5 +5,5 @@ namespace App\Bundles\AppMakerBundle\Infrastructure\Architecture;
 
 interface DefaultArchitectureCreatorByDoctrineEntityClassInterface
 {
-    public function create(string $entityClassName): void;
+    public function create(string $entityClassName, bool $isDisableOverride): void;
 }

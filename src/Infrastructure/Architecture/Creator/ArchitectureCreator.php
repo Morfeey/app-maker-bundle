@@ -25,13 +25,13 @@ readonly class ArchitectureCreator implements DefaultArchitectureCreatorByDoctri
     ) {
     }
 
-    public function create(string $entityClassName): void
+    public function create(string $entityClassName, bool $isDisableOverride): void
     {
         foreach ($this->caseContext->create() as $case) {
             $architectureFileCaseDto = $this->createFileCase($entityClassName, $case);
             $architectureFileDto = $this->collectUses($case->create($architectureFileCaseDto));
 
-            $this->fileCreatorService->create($architectureFileDto, $architectureFileCaseDto);
+            $this->fileCreatorService->create($architectureFileDto, $architectureFileCaseDto, $isDisableOverride);
         }
     }
 

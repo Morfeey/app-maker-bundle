@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Infrastructure\Factory\DefaultFactory;
 
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Dto\File\TypeDto;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Infrastructure\Factory\DefaultFactory\FactoryCaseInterface;
 use App\Bundles\InfrastructureBundle\Infrastructure\Helper\ArrayCollection\Collection;
 use App\Bundles\InfrastructureBundle\Infrastructure\Helper\ArrayCollection\CollectionInterface;
@@ -77,6 +78,21 @@ class DomainToQueryResponseFactoryCase extends DefaultFileCase implements Factor
             $this->createMappingCollectionContent($caseParameters)
         );
 
+        $mappingIterableMethod = $this->attributesCreatorFacade->createMethod(
+            'mappingIterable',
+            'iterable',
+            $this->createCollection()->add(
+                $this->attributesCreatorFacade->createParameter(
+                    'domainEntityIterable',
+                    new TypeDto(false, false, 'iterable', null),
+                )
+            ),
+            MethodTypeEnum::NON_STATIC,
+            ModificationTypeEnum::PUBLIC_,
+            false,
+            $this->createMappingIterableContent()
+        );
+
         return
             $this->createDefault($caseParameters)
                 ->setClassType(ClassTypeEnum::CLASS_)
@@ -84,6 +100,7 @@ class DomainToQueryResponseFactoryCase extends DefaultFileCase implements Factor
                     $this->createCollection()
                         ->add($mappingMethod)
                         ->add($mappingCollectionMethod)
+                        ->add($mappingIterableMethod)
                 )->setUseNamespaceCollection(
                     $this->createCollection()
                         ->add($queryResponseInterfaceUse)
@@ -116,6 +133,17 @@ class DomainToQueryResponseFactoryCase extends DefaultFileCase implements Factor
         ];
 
         return implode(PHP_EOL, $contentLineList);
+    }
+
+    private function createMappingIterableContent(): string
+    {
+        $content = [
+            'foreach ($domainEntityIterable as $entity) {',
+            '           yield $this->mapping($entity);',
+            '       }'
+        ];
+
+        return implode(PHP_EOL, $content);
     }
 
     private function createMappingContent(FileCase $fileCase): string

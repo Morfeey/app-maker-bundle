@@ -8,6 +8,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
@@ -25,17 +26,28 @@ class DefaultArchitectureMakeCommand extends Command
 
     protected function configure(): void
     {
-        $this->addArgument(
-            'entityClassName',
-            InputArgument::REQUIRED,
-            'Doctrine entity full class name'
-        );
+        $this
+            ->addArgument(
+                'entityClassName',
+                InputArgument::REQUIRED,
+                'Doctrine entity full class name'
+            )
+            ->addOption(
+                'disableOverride',
+                'do',
+                InputOption::VALUE_OPTIONAL,
+                'Disable default settings override',
+                false
+            )
+
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->creatorByDoctrineEntityClass->create(
-            $input->getArgument('entityClassName')
+            $input->getArgument('entityClassName'),
+            $input->getOption('disableOverride'),
         );
 
         return Command::SUCCESS;

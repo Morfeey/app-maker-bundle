@@ -213,6 +213,7 @@ abstract class DefaultHandler extends DefaultFileCase
 
         return
             $this->createDefault($architectureFileCaseDto)
+                ->setIsOverrideExistFile(false)
                 ->setClassType(ClassTypeEnum::CLASS_)
                 ->setConstructor($constructor)
                 ->setMethodCollection($methodCollection)

@@ -11,7 +11,7 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Dto\File\UseNamespace
 
 class FileUseCollectorService
 {
-    public const SIMPLE_TYPES = ['int', 'string', 'bool', 'float', 'null', 'mixed', 'array', 'static', 'self'];
+    public const SIMPLE_TYPES = ['int', 'string', 'bool', 'float', 'null', 'mixed', 'array', 'static', 'self', 'iterable'];
     public function collect(ArchitectureFileDto $architectureFile): CollectionInterface
     {
         $useCollection = new Collection();

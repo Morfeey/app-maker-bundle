@@ -8,16 +8,19 @@ use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Dto\ArchitectureFileC
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Dto\ArchitectureFileDto as ArchitectureFile;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\Dto\File\UseNamespaceDto;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Contract\Handler\Query\DefaultQuery\FindAllIterableQueryHandlerInterfaceCase;
+use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Factory\DomainToQueryResponseFactoryInterfaceCase;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Application\Handler\DefaultHandler;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\ArchitectureFileCaseInterface;
 use App\Bundles\AppMakerBundle\Infrastructure\Architecture\FileCase\Domain\Repository\RepositoryInterfaceCase;
 
 class FindAllIterableQueryHandlerCase extends DefaultHandler implements ArchitectureFileCaseInterface
 {
+    public const FACTORY_METHOD_NAME = 'mappingIterable';
     public function __construct(
         private readonly AttributesCreatorFacade $attributesCreatorFacade,
         private readonly FindAllIterableQueryHandlerInterfaceCase $handlerInterfaceCase,
-        private readonly RepositoryInterfaceCase $repositoryInterfaceCase
+        private readonly RepositoryInterfaceCase $repositoryInterfaceCase,
+        private readonly DomainToQueryResponseFactoryInterfaceCase $factoryCase,
     ) {
     }
 
@@ -27,7 +30,8 @@ class FindAllIterableQueryHandlerCase extends DefaultHandler implements Architec
             $caseParameters,
             $this->handlerInterfaceCase,
             $this->attributesCreatorFacade,
-            $this->repositoryInterfaceCase
+            $this->repositoryInterfaceCase,
+            $this->factoryCase,
         );
     }
 
